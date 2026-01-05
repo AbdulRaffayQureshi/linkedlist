@@ -14,12 +14,12 @@ public:
     }
 };
 
-class LinkedList {
+class DLinkedList {
     Node* head;
     Node* tail;
     
 public:
-    LinkedList() {
+    DLinkedList() {
         head = tail = NULL;
     }
 
@@ -141,16 +141,16 @@ public:
 // ----------------Reverse Linked List----------------
     void reverse(){
         Node* curr = head;
-        Node* tmp = NULL;
+        Node* temp = NULL;
         while(curr != NULL){
-            tmp = curr->prev;
+            temp = curr->prev;
             curr->prev = curr->next;
-            curr->next = tmp;
+            curr->next = temp;
             curr = curr->prev; // moved to original next
         }
         // swap head and tail
-        if(tmp != NULL){
-            Node* newHead = tmp->prev;
+        if(temp != NULL){
+            Node* newHead = temp->prev;
             head = newHead;
         }
         // ensure tail is old head
@@ -196,30 +196,29 @@ public:
 };
 
 int main(){
-    LinkedList ll;
-    ll.push_back(10);
-    ll.push_back(20);
-    ll.push_front(5);
-    ll.push_front(0);
-    ll.push_middle(15, 3);
-    ll.print();         // before removal
-    ll.pop_value(15);   // remove specific number 15
-    ll.print();         // after removal
-    ll.reverse();
-    ll.print();         // after reverse
+    DLinkedList dll;
+    dll.push_back(10);
+    dll.push_back(20);
+    dll.push_front(5);
+    dll.push_front(0);
+    dll.push_middle(15, 3);
+    dll.print();         // before removal
+    dll.pop_value(15);   // remove specific number 15
+    dll.print();         // after removal
+    dll.reverse();
+    dll.print();         // after reverse
 
     // demo: search for a value
-    int pos = ll.search(20);
+    int pos = dll.search(20);
     if(pos != -1) cout << "Found 20 at index " << pos << endl;
     else cout << "20 not found" << endl;
 
     // demo: print length
-    cout << "Length: " << ll.length() << endl;
+    cout << "Length: " << dll.length() << endl;
 
     // demo: print even values
     cout << "Even values: ";
-    ll.print_even_values();
-
+    dll.print_even_values();
 
     return 0;
 }
